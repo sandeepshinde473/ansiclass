@@ -1,0 +1,13 @@
+  # Variable: variables that will apply to the play, on all target systems
+  vars: 
+
+  # Task: the list of tasks that will be executed witin the playbook
+  vars_files:
+    - Ext_variable.yml
+  tasks:
+   - name: Start service BITS, if not started
+     win_service:
+      name: "{{item}}"
+      state: "{%- if item == 'Bits' -%}stopped{%- elif item=='Dnscache'-%}started{%- else -%}started{%- endif -%}" 
+     loop: 
+           "{{servicesneedstodisable}}"
