@@ -1,0 +1,20 @@
+-
+  hosts: all
+  gather_facts: false # this will make not to gather facts before running tasks
+
+  tasks: 
+    - name: Display Register value
+      win_shell:  get-service | select name,status | convertto-json -depth 1
+      register: servicenamevar
+      #when: ansible_distribution == "Microsoft Windows Server Datacenter" # you can use 'and' / 'or' keywork for multiple condition 
+
+    - name: save variable
+      set_fact:
+        services: "{{servicenamevar.stdout | from_json}}"
+        #when: (servicenamevar.stdout | from_json).Status == 4
+      
+    - name : output
+      debug:
+        msg: "{{services.Status}}"
+# You can use below way as well
+#when: 
