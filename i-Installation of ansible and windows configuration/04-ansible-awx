@@ -12,14 +12,18 @@ install docker
 
 apt install docker.io
 
+
+install docker
+
+apt install docker.io
+
 apt install python-pip -y
+
+#pip install docker
+
+pip install docker-py
 pip install docker-compose
-pip install docker
-
-# or pip install docker-py
 apt install nodejs npm -y
-
-
 npm install npm --global 
 
 git clone https://github.com/ansible/awx.git
