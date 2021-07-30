@@ -11,3 +11,4 @@
   tasks:
     - debug:
         msg: '{{ tags | items2dict }}'
+#ansible-playbook -i localhost, 02-testjinja2.yaml
