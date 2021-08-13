@@ -1,0 +1,24 @@
+# kubectl apply -f https://raw.githubusercontent.com/ansible/awx-operator/0.12.0/deploy/awx-operator.yaml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ansibleazpv
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 8Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/azpv"
+    type: DirectoryOrCreate
+---
+apiVersion: awx.ansible.com/v1beta1
+kind: AWX
+metadata:
+  name: awx-az-pv
+spec:
+  service_type: nodeport
+  ingress_type: none
+ 
